@@ -1,0 +1,66 @@
+body{
+  background: url('../images/books and movies.jpg');
+  background-size: cover;
+}
+
+header {
+  background: url('../images/Libro-abierto.jpg');
+  background-repeat: repeat;
+  position: relative;
+  background-size: cover;
+  color: #ffffff;
+  text-shadow: 3px 1px #000000;
+  width: auto;
+  height: auto;
+}
+
+.jumbotron{
+  margin-bottom: 0px;
+}
+
+.lead{
+  text-align: center;
+}
+
+section, footer,li.list-group-item{
+  background-color: #90372e;
+}
+
+section {
+  border-radius: 20px;
+  color: #ffffff
+}
+
+div.row{
+  padding: 20px;
+  margin: 15px 0px;
+}
+
+h2, h3{
+  margin-top: 10px;
+}
+
+p{
+  font-size: 15px;
+  text-align: justify;
+}
+
+form{
+  margin: 20px 30px 0px 0px;
+}
+
+img.img-circle.center-block{
+  width:140px;
+  height:140px;
+}
+
+#recomendado{
+  font-size: 16px;
+  font-style: italic;
+}
+
+footer{
+  border-radius: 15px;
+  padding: 10px;
+
+}
