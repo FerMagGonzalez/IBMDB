@@ -1,6 +1,7 @@
 
   $(document).ready(function(){
 
+
   	function MostrarContenido(data){
   		$("#contenido").html(data);
   	}
@@ -30,14 +31,30 @@
   	$(".simplenav a").on("click",CargarAjax);
   	$(".contacto").on("click",CargarAjax);
 
-  	$('body').on('click', '#mostrar', function(event){
-  		event.preventDefault();
-  		$("#aMostrar").toggle();
-  	});
-
-  	$('body').on('click',"#contenidotabla", function(event){
-  			event.preventDefault();
-  			$("#contenidotabla").append("<tr><td>" + titulo + "</td><td>" + autor + "</td></tr>"+ portada + "</td></tr>");
-  	});
-
+    
+//Carga Tabla por categoria seleccionada
+     $(document).on('change', '#getGenero', function() {
+       event.preventDefault();
+        $.get( "index.php?action=listarxGenero",{ valGenero: $(this).val() }, function(data) {
+          console.log(data);
+          $("#contenidoTabla").html(data);
+          });
   });
+
+  // //seleccion del genero para el actualizar
+  // $(document).on('change', '#selGenero', function() {
+  //   event.preventDefault();
+  //   var valor = $("#selGenero option:selected").html();
+  //   $("#generoMod").val(valor);
+  //  });
+
+  //  $(document).on('click', '#edGenero', function() {
+  //    event.preventDefault();
+  //    var nombre = $("#genero").text();
+  //    alert(nombre);
+  //    alert($("#genero").text());
+  //    $("#generoSel").val(nombre);
+  //  })
+
+
+});

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2016 a las 02:52:02
+-- Tiempo de generación: 28-10-2016 a las 02:27:15
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.6.8
 
@@ -29,19 +29,20 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `genero` (
   `id` int(11) NOT NULL,
   `tipo` varchar(15) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `genero`
 --
 
 INSERT INTO `genero` (`id`, `tipo`) VALUES
-(1, 'terror'),
 (2, 'comedia'),
 (3, 'suspenso'),
-(4, 'ciencia ficcion'),
 (5, 'AVENTURAS'),
-(6, 'DRAMA');
+(6, 'DRAMA'),
+(11, 'Infantil'),
+(12, 'ciencia ficcion'),
+(16, 'Terror');
 
 -- --------------------------------------------------------
 
@@ -54,43 +55,19 @@ CREATE TABLE IF NOT EXISTS `libro` (
   `titulo` varchar(30) NOT NULL,
   `autor` varchar(15) NOT NULL,
   `portada` varchar(50) NOT NULL,
+  `pelicula` varchar(30) NOT NULL,
   `id_genero` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='tabla libros';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COMMENT='tabla libros';
 
 --
 -- Volcado de datos para la tabla `libro`
 --
 
-INSERT INTO `libro` (`id`, `titulo`, `autor`, `portada`, `id_genero`) VALUES
-(5, 'la isla', 'alguien', '', 3),
-(6, 'la isla', 'alguien', '', 3),
-(7, 'libro2', 'alguien', '', 1),
-(8, 'libro3', 'alguien', '', 5),
-(9, 'libro4', 'alguien', '', 2),
-(10, 'libro5', 'alguien', '', 6);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pelicula`
---
-
-CREATE TABLE IF NOT EXISTS `pelicula` (
-  `id` int(11) NOT NULL,
-  `titulo` varchar(30) NOT NULL,
-  `director` varchar(15) NOT NULL,
-  `img` varchar(50) NOT NULL,
-  `id_libro` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `pelicula`
---
-
-INSERT INTO `pelicula` (`id`, `titulo`, `director`, `img`, `id_libro`) VALUES
-(1, 'pelicula1', 'una persona', '', 5),
-(2, 'pelicula2', 'una persona', '', 7),
-(3, 'pelicula3', 'una persona', '', 5);
+INSERT INTO `libro` (`id`, `titulo`, `autor`, `portada`, `pelicula`, `id_genero`) VALUES
+(5, 'El retrato de Dorian Gray', 'Oscar Wilde', 'images/uploaded/581138059133e9788467032536.jpg', 'El retrato de Dorian Gray', 6),
+(6, 'La casa de los espiritus', 'Isabel Allende', 'images/uploaded/58113837bdd94sdfsdfsdrf34r.jpg', 'La casa de los espiritus', 6),
+(7, 'Inferno', 'Dan Brown', 'images/uploaded/5812883923803Inferno-Portada.jpg', 'Inferno', 3),
+(8, 'El Resplandor', 'Stephen King', 'images/uploaded/58129a4fc954fresplandor.jpg', 'El Resplandor', 16);
 
 --
 -- Índices para tablas volcadas
@@ -109,12 +86,6 @@ ALTER TABLE `libro`
   ADD PRIMARY KEY (`id`) COMMENT 'PK_LIBRO', ADD KEY `fk_categorias` (`id_genero`), ADD KEY `fk_genero` (`id_genero`);
 
 --
--- Indices de la tabla `pelicula`
---
-ALTER TABLE `pelicula`
-  ADD PRIMARY KEY (`id`) COMMENT 'PK_PELICULA', ADD KEY `fk_libros` (`id_libro`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -122,17 +93,12 @@ ALTER TABLE `pelicula`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT de la tabla `pelicula`
---
-ALTER TABLE `pelicula`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- Restricciones para tablas volcadas
 --
@@ -141,13 +107,7 @@ ALTER TABLE `pelicula`
 -- Filtros para la tabla `libro`
 --
 ALTER TABLE `libro`
-ADD CONSTRAINT `fk_genero` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `pelicula`
---
-ALTER TABLE `pelicula`
-ADD CONSTRAINT `fk_libros` FOREIGN KEY (`id_libro`) REFERENCES `libro` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_genero` FOREIGN KEY (`id_genero`) REFERENCES `genero` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

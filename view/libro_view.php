@@ -17,6 +17,11 @@
         return $this->smarty->fetch($contenido);
       }
 
+      function mostrarxGenero($libros){
+        $this->smarty->assign('libros',$libros);
+        $this->smarty->display('tablaLibros.tpl');
+      }
+
   }
 
 ?>

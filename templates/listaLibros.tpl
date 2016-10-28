@@ -5,9 +5,9 @@
     elección o, la otra opción con la que cuentas es, encontrar el libro del que se basó esa película que tanto te gustó.</p>
     <form class="form-horizontal" action="index.php?action=listaLibros" method="post">
       <div class="form-group">
-        <label class="control-label col-sm-4">¿Qué genero queres buscar?:</label>
+        <label class="control-label col-sm-4">¿Por cual genero queres filtrar?:</label>
         <div class="col-sm-8">
-          <select class="form-control" id="genero">
+          <select class="form-control" id="getGenero">
             {foreach $generos as $genero}
               <option>{$genero['tipo']}</option>
             {/foreach}
@@ -23,28 +23,12 @@
            <th>AUTOR</th>
            <th>PORTADA</th>
            <th>PELICULA</th>
-           <th>DIRECTOR</th>
-           <th>POSTER</th>
          </tr>
        </thead>
-       <tbody id="contenidoTabla"><!--Contenido de la tabla-->
-         {foreach $libros as $libro}
-           {if $libro['id_genero'] == $genero['id']}
-             <tr>
-               <td>{$libro['titulo']}</td>
-               <td>{$libro['autor']}</td>
-               <td><img src="{$libro['portada']}" alt="imagen-libro-{$libro['titulo']}" class="img-responsive"/></td>
-               {foreach $peliculas as $pelicula}
-                {if $pelicula['id_libro'] == $libro['id']}
-                  <td>{$pelicula['titulo']}</td>
-                  <td>{$pelicula['director']}</td>
-                  <img src="{$pelicula['img']}" alt="imagen-pelicula-{$pelicula['titulo']}" class="img-responsive"/>
-                  <td></td>
-                {/if}
-              {/foreach}
-             </tr>
-            {/if}
-          {/foreach}
+       <tbody id="contenidoTabla">
+
+         {include 'tablaLibros.tpl'}
+
        </tbody>
      </table>
     </div>

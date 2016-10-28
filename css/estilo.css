@@ -22,7 +22,7 @@ header {
   text-align: center;
 }
 
-section, footer,li.list-group-item{
+section, footer, li.list-group-item, div.modal-content{
   background-color: #90372e;
 }
 
@@ -62,5 +62,4 @@ img.img-circle.center-block{
 footer{
   border-radius: 15px;
   padding: 10px;
-
 }

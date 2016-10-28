@@ -26,9 +26,20 @@
       $consulta = $this->db->prepare("SELECT * FROM genero");
       $consulta->execute();
       while ($genero = $consulta->fetch()){
-        if ($genero['tipo'] = $nombreGenero) {
+        if ($genero['tipo'] == $nombreGenero) {
           return $genero['id'];
         }
+      }
+    }
+
+    public function estaGenero($nombreGenero){
+      $consulta = $this->db->prepare("SELECT * FROM genero where tipo=?");
+      $consulta->execute(array($nombreGenero));
+      if (empty($consulta)) {
+        return true;
+      }
+      else {
+        return false;
       }
     }
 
@@ -36,6 +47,13 @@
     {
       $consulta = $this->db->prepare('INSERT INTO ibmdb.genero(tipo) VALUES (?)');
       $consulta->execute(array($tipo));
+    }
+
+    public function editarGenero($selGenero,$generoMod)
+    {
+      $id_genero = $this->buscarId($selGenero);
+      $consulta = $this->db->prepare('UPDATE ibmdb.genero SET tipo=? WHERE id=?');
+      $consulta->execute(array($generoMod,$id_genero));
     }
 
     public function borrarGenero($id_genero)
